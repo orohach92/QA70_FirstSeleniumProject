@@ -33,7 +33,7 @@ public class findElemetsTest {
         //by tagName h1
         WebElement title = driver.findElement(By.tagName("h1"));
         System.out.println(title.getText());
-        // by teg h2
+        // by tag h2
         WebElement title2 = driver.findElement(By.tagName("h2"));
         System.out.println(title2.getText());
 
