@@ -16,7 +16,7 @@ public class FindElementInTable {
     WebDriver driver;
 
     @BeforeMethod
-    public void setUp(){
+    public void setUp() {
         driver = new ChromeDriver();
         driver.get("https://www.w3schools.com/css/css_table.asp");
 //        driver.manage().window().maximize();
@@ -29,7 +29,7 @@ public class FindElementInTable {
     }
 
     @Test
-    public void tableCssSelector(){
+    public void tableCssSelector() {
         //get numbers of rows
         List<WebElement> rows = driver.findElements(By.cssSelector("tr"));
         System.out.println(rows.size());
@@ -54,11 +54,28 @@ public class FindElementInTable {
         System.out.println("==============================================");
     }
 
-    //xPath
     @Test
-    public void findElementByXpath(){
-        //      //some_tag[@key='value']
-        //      //some_tag[1]
-        //      //some_tag[text()='LosAngeles']
+    public void tableXpath() {
+        //get numbers of rows
+//        List<WebElement> rows = driver.findElements(By.cssSelector("tr"));
+//        System.out.println(rows.size()); //get numbers of rows
+        List<WebElement> rows = driver.findElements(By.xpath("//tr"));
+        System.out.println(rows.size());
+
+        //get row 4
+//        WebElement mexico = driver.findElement(By.cssSelector("#customers tr:nth-child(4)"));
+//        System.out.println(mexico.getText());
+        WebElement mexico = driver.findElement(By.xpath("//*[@id='customers']//tr[4]"));
+        System.out.println(mexico.getText());
+
+        //get row 5 last element
+//        WebElement country = driver.findElement(By.cssSelector("#customers tr:nth-child(5) td:nth-child(3)"));
+//        System.out.println(country.getText());
+
+//        WebElement country = driver.findElement(By.xpath("//*[@id='customers']//tr[4]//td[3]"));
+
+        //get last
+        WebElement country = driver.findElement(By.xpath("//*[@id='customers']//tr[4]//td[last()]"));
+        System.out.println(country.getText());
     }
 }

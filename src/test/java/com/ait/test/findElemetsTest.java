@@ -134,7 +134,73 @@ public class findElemetsTest {
         System.out.println(feedback.getText());
         WebElement search = driver.findElement(By.cssSelector(".navigation-link:nth-child(2)"));
         System.out.println(search.getText());
+
+        //parent
+            //one step up
+        driver.findElement(By.xpath("//h1/parent::*"));
+        driver.findElement(By.xpath("//h1/parent::div"));
+        driver.findElement(By.xpath("//h1/.."));
+
+        //Ancestor
+        driver.findElement(By.xpath("//h1/ancestor::*"));//all
+        driver.findElement(By.xpath("//h1/ancestor::div"));// two steps
+        driver.findElement(By.xpath("//h1/ancestor::div[2]"));// one steps
+
     }
+
+    //xPath
+    @Test
+    public void findElementByXpath() {
+        //      //some_tag[@key='value']
+        //      //some_tag[1]
+        //      //some_tag[text()='LosAngeles']
+
+//        WebElement title = driver.findElement(By.tagName("h1"));
+        driver.findElement(By.xpath("//h1"));
+
+//        driver.findElement(By.cssSelector("#city"));
+        driver.findElement(By.xpath("//*[@id='city']"));
+
+//        driver.findElement(By.cssSelector(".telephone"));
+        driver.findElement(By.xpath("//*[@class='telephone']"));
+
+// driver.findElement(By.cssSelector("[href='/let-car-work']"));
+        driver.findElement(By.xpath("//*[@href='/let-car-work']"));
+
+        //driver.findElement(By.cssSelector("[class^='fa-solid']"));
+        driver.findElement(By.xpath("//*[starts-with(@class,'fa-solid')]"));
+
+        //contains text
+//driver.findElement(By.cssSelector("[class*='fa-bars']"));
+        WebElement text = driver.findElement(By.xpath("//*[contains(text(),'best services')]"));
+
+        //all text on the page
+//        WebElement text = driver.findElement(By.xpath("//*[contains(.,'best services')]"));
+        System.out.println(text.getText());
+
+        // equals text
+        WebElement find = driver.findElement(By.xpath("//*[text()='Find your car now!']"));
+        System.out.println(find.getText());
+
+        //tag+class+pare
+//        driver.findElement(By.cssSelector("a.navigation-link[href='/search']"));
+        driver.findElement(By.xpath("//a[contains(@class, 'navigation-link')][@href='/search']"));
+
+        //driver.findElement(By.cssSelector(".fa-bars"));
+        driver.findElement(By.xpath("//*[@class='fa-solid fa-bars']"));
+
+        //>one step below
+//        driver.findElement(By.cssSelector(".logo>img"));
+        driver.findElement(By.xpath("//*[@class='logo']/img"));
+
+//<space> one or more steps below
+//        driver.findElement(By.cssSelector(".feedback-page .banner-left"));
+        driver.findElement(By.xpath("//*[@class= 'feedback-page']//*[@class='banner-left']"));
+
+        //cssSelector -> div>a   xpPath -> //div/a
+        //cssSelector ->div a    xPath -> //div//a
+    }
+
 
     @AfterMethod()
     public void tearDown() {
